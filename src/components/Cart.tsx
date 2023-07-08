@@ -25,7 +25,7 @@ export default function Cart() {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant="ghost">
+        <Button variant ="ghost">
           <HiOutlineShoppingCart size="25" />
         </Button>
       </SheetTrigger>

@@ -3,6 +3,7 @@ import banner from '@/assets/images/banner.png';
 import hero from '@/assets/images/hero.png';
 import { Link } from 'react-router-dom';
 import Footer from '@/layouts/Footer';
+// import curselWatch from '@/components/curselWatch'
 
 export default function Home() {
   return (
@@ -15,12 +16,15 @@ export default function Home() {
           <p className="text-secondary font-semibold text-xl">
             Effortless communication at your fingertips
           </p>
-          <div className="text-primary mt-20">
-            <p>Bluetooth 5.2 for easy, secure communication</p>
-            <p>Precise 143 Amoled display for clear visuals</p>
+          <div className="text-primary mt-20 ">
+            <p className='text-[18px] font-serif'>Bluetooth 5.2 for easy, secure communication.Precise 143 Amoled display for clear visuals</p>
+            <p className='text-[18px] font-serif'>The Haylou Solar Plus RT3 smartwatch is IP68 waterproof. You don't need to take it off when  <br/>  washing  hands, helping you cope easily with sweating during workouts or stormy rains</p>
           </div>
-          <Button className="mt-5">Learn more</Button>
+          <Button className="mt-5 text-[16px]">about more</Button>
         </div>
+
+        {/* <curselWatch/> */}
+
         <div className="relative -right-14">
           <img src={banner} alt="" />
         </div>
