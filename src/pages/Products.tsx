@@ -3,6 +3,7 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/components/ui/use-toast';
+import { useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
 import { useEffect, useState } from 'react';
 
@@ -15,6 +16,8 @@ export default function Products() {
   }, []);
 
   const { toast } = useToast();
+
+  const {} = useAppSelector(state => state.product)
 
   //! Dummy Data
 
