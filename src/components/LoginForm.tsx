@@ -1,29 +1,56 @@
 'use client';
 
-import * as React from 'react';
+
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useForm } from 'react-hook-form';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { loginUser } from '@/redux/features/user/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
+interface LoginFormInputs {
+  email: string;
+  password: string;
+}
+
 export function LoginForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
-    setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }
+  const dispatch = useAppDispatch()
+  const {user, isLoading} = useAppSelector((state => state.user))
+   const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>();
+  const navigate = useNavigate()
+
+  const onSubmit = (data: LoginFormInputs) => {
+    console.log(data);
+    dispatch(loginUser({email : data.email, password : data.password}))
+    
+  };
+
+ useEffect( () =>{
+
+ if(user.email && !isLoading){
+      navigate('/')
+    }
+ } ,[user.email, isLoading]) 
 
   return (
-    <div className={cn('grid gap-6', className)} {...props}>
-      <form onSubmit={onSubmit}>
+    <>
+    
+    
+    <div className={cn('grid gap-6 w-[50%] mx-auto mt-20 bg-[#8fdaeb] px-10 py-5', className)} {...props}>
+      <form  onSubmit={handleSubmit(onSubmit)}>
+        <h1 className='text-center text-3xl text-white py-14'>Login from</h1>
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
@@ -36,16 +63,18 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading}
+              {...register('email', { required: 'Email is required' })}
             />
+            {errors.email && <p>{errors.email.message}</p>}
             <Input
               id="password"
               placeholder="your password"
               type="password"
               autoCapitalize="none"
               autoComplete="password"
-              disabled={isLoading}
+              {...register('password', { required: 'Password is required' })}
             />
+            {errors.password && <p>{errors.password.message}</p>}
           </div>
           <Button disabled={isLoading}>
             {isLoading && <p>loading</p>}
@@ -67,5 +96,6 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
         {isLoading ? <p>loading</p> : <p>GitHub</p>}
       </Button>
     </div>
+    </>
   );
 }

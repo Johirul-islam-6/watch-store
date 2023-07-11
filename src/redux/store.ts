@@ -1,14 +1,16 @@
-import { reducer } from './../components/ui/use-toast';
+
 import { configureStore } from '@reduxjs/toolkit'
 import cartReducer from './features/cart/cartSlice'
 import productReducer from './features/products/productSlice'
+import userReducer from './features/user/userSlice'
 import {api} from './api/apiSlice'
 
 
 export const store = configureStore({
     reducer: {
         cart : cartReducer,
-        product : productReducer,
+        product : productReducer, 
+        user : userReducer,
         [api.reducerPath] : api.reducer,
     },
 
