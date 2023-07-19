@@ -16,7 +16,7 @@ export default function ProductDetails() {
 
   // const product = data?.find((item) => item._id === Number(id));
 
-  const {data: product, isLoading, error} = useSingelProductsQuery(id)
+  const {data: product} = useSingelProductsQuery(id)
 
   //! Temporary code ends here
 

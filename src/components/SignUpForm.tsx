@@ -20,7 +20,7 @@ interface SignupFormInputs {
 
 
 export function SignupForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isLoading ] = React.useState<boolean>(false);
   const dispatch = useAppDispatch()
 const {register,handleSubmit,formState: { errors },} = useForm<SignupFormInputs>();
 

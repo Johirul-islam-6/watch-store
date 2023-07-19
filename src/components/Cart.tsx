@@ -12,7 +12,6 @@ import {
   HiOutlineTrash,
 } from 'react-icons/hi';
 import { Button } from './ui/button';
-import { IProduct } from '@/types/globalTypes';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { addToCart, removeFromCart, removeOne } from '@/redux/features/cart/cartSlice';
 import { Link } from 'react-router-dom';
