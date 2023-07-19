@@ -15,6 +15,7 @@ import { Button } from './ui/button';
 import { IProduct } from '@/types/globalTypes';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { addToCart, removeFromCart, removeOne } from '@/redux/features/cart/cartSlice';
+import { Link } from 'react-router-dom';
 
 export default function Cart() {
 
@@ -36,7 +37,7 @@ const dispatch = useAppDispatch()
           <SheetTitle>Cart</SheetTitle>
          <div className="flex justify-between py-3">
            <h1 className='text-center text-[18px] '>Total: {total.toFixed(2)} $</h1>
-           <button className='btn px-4 py-1 bg-green-600 text-white'>Payment</button>
+           <Link to={'/checkout'} className='btn px-4 py-1 bg-green-600 text-white'>Payment</Link>
          </div>
          
         </SheetHeader>
